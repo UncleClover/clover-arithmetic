@@ -1,4 +1,4 @@
-package com.clover.arithmetic.bubbling;
+package com.clover.arithmetic.sort;
 
 import java.util.Random;
 
@@ -6,17 +6,16 @@ import com.alibaba.fastjson.JSON;
 
 public class Bubbling {
 	public static void main(String[] args) {
-		int[] a = new int[100];
-		for (int i = 0; i < 100; i++) {
+		int length = 100000;
+		int[] a = new int[length];
+		for (int i = 0; i < length; i++) {
 			a[i] = new Random().nextInt(1000);
 		}
-		System.out.println(JSON.toJSONString(a));
-
-		System.out.println(JSON.toJSONString(asc(a)));
-		System.out.println(JSON.toJSONString(desc(a)));
+		asc(a);
 	}
 	
 	private static int[] asc(int[] a) {
+		long startTime = System.currentTimeMillis();
 		for (int j = 0; j < a.length; j++) {
 			for (int i = 0; i < a.length - 1; i++) {
 				int nextVal = a[i + 1];
@@ -26,6 +25,7 @@ public class Bubbling {
 				}
 			}
 		}
+		System.out.printf("冒泡排序耗时：%dms\n", (System.currentTimeMillis() - startTime));
 		return a;
 	}
 	
